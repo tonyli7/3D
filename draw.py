@@ -7,34 +7,36 @@ def add_box( points, x, y, z, width, height, depth ):
     return 0
 
 def add_sphere( points, cx, cy, cz, r, step ):
-    
+    generate_sphere(points,cx,cy,cz,r,step)
     return 0
 
 def generate_sphere( points, cx, cy, cz, r, step ):
-    xi=0
-    yi=0
-    zi=0
-    xf=0
-    yf=0
-    zf=0
+    x=0
+    y=0
+    z=0
     for p in np.arange(0,1.0+step,step):
         for t in np.arange(0,1.0+step,step):
-            xf=r*math.cos(2*math.pi*t)
-            yf=r*math.sin(2*math.pi*t)*math.cos(math.pi*p)
-            zf=r*math.sin(2*math.pi*t)*math.sin(math.pi*p)
-            add_edge(points, xi,yi,zi,xf,yf,zf)
-            add_edge(points, xi,yi,zi,xf,yf,zf)
-            xi=xf
-            yi=yf
-            zi=zf
+            x=r*math.cos(2*math.pi*t)+cx
+            y=r*math.sin(2*math.pi*t)*math.cos(math.pi*p)+cy
+            z=r*math.sin(2*math.pi*t)*math.sin(math.pi*p)
+            add_edge(points,x,y,z,x,y,z)
             
     return 0
 
 def add_torus( points, cx, cy, cz, r0, r1, step ):
+    generate_torus(points,cx,cy,cz,r0,r1,step)
     return 0
 
 def generate_torus( points, cx, cy, cz, r0, r1, step ):
-    
+    x=0
+    y=0
+    z=0
+    for p in np.arange(0,1.0+step,step):
+        for t in np.arange(0,1.0+step,step):
+            x=r0*math.cos(2*math.pi*t)*(r0*math.cos(2*math.pi*p)+r1)+cx
+            y=r0*math.cos(2*math.pi*p)+cy
+            z=r0*math.sin(2*math.pi*t)*(r0*math.sin(2*math.pi*p)+r1)
+            add_edge(points,x,y,z,x,y,z)
     
     return 0
 
