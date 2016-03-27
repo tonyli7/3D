@@ -33,9 +33,9 @@ def generate_torus( points, cx, cy, cz, r0, r1, step ):
     z=0
     for p in np.arange(0,1.0+step,step):
         for t in np.arange(0,1.0+step,step):
-            x=r0*math.cos(2*math.pi*t)*(r0*math.cos(2*math.pi*p)+r1)+cx
+            x=math.cos(2*math.pi*t)*(r0*math.sin(2*math.pi*p)+r1)+cx
             y=r0*math.cos(2*math.pi*p)+cy
-            z=r0*math.sin(2*math.pi*t)*(r0*math.sin(2*math.pi*p)+r1)
+            z=math.sin(2*math.pi*t)*(r0*math.sin(2*math.pi*p)+r1)
             add_edge(points,x,y,z,x,y,z)
     
     return 0
